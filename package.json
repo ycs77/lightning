@@ -9,6 +9,13 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
+    "dependencies": {
+        "@inertiajs/inertia": "^0.2",
+        "@inertiajs/inertia-vue": "^0.2",
+        "vue": "^2.6",
+        "vue-meta": "^2.4",
+        "vue-template-compiler": "^2.6"
+    },
     "devDependencies": {
         "axios": "^0.19",
         "cross-env": "^7.0",
