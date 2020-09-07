@@ -1,0 +1,7 @@
+/* Link */
+.link {
+  @apply text-purple-500 transition-colors duration-100;
+  &:hover {
+    @apply text-purple-700;
+  }
+}
