@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueMeta from 'vue-meta'
 import { InertiaApp } from '@inertiajs/inertia-vue'
+import PurgeIconsVue from 'purge-icons-vue'
 
 Vue.use(InertiaApp)
 Vue.use(VueMeta)
+Vue.use(PurgeIconsVue)
 
 const app = document.getElementById('app')
 const appName = document.title

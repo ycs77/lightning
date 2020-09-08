@@ -3,5 +3,6 @@
 
 @import 'tailwindcss/components';
 @import 'components';
+@import 'purge-icons-vue';
 
 @import 'tailwindcss/utilities';
