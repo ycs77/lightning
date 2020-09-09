@@ -1,0 +1,17 @@
+.form-label {
+  @apply mb-2 block text-gray-600 select-none;
+}
+
+.form-error {
+  @apply text-red-700 mt-2 text-sm;
+}
+
+.form-input.error,
+.form-textarea.error,
+.form-select.error {
+  @apply .border-red-600;
+
+  &:focus {
+    box-shadow: 0 0 0 1px theme('colors.red.600');
+  }
+}

@@ -1,5 +1,5 @@
 <template>
-  <inertia-link :href="href" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 focus:bg-gray-100" v-on="$listeners">
+  <inertia-link :href="href" :method="method" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 focus:bg-gray-100" v-on="$listeners">
     <template v-if="icon">
       <icon class="mr-2" :icon="icon" />
       <slot />
@@ -15,6 +15,7 @@ export default {
       type: String,
       required: true
     },
+    method: String,
     icon: String
   }
 }

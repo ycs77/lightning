@@ -1,0 +1,13 @@
+.btn {
+  @apply inline-flex items-center px-5 py-2 rounded-md transition-colors duration-150;
+}
+
+.btn-purple {
+  @apply bg-purple-500 text-white;
+  &:hover {
+    @apply bg-purple-700;
+  }
+  &:disabled {
+    @apply bg-purple-300 !important;
+  }
+}

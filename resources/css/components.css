@@ -1,7 +1,22 @@
+/* Card */
+.card {
+  @apply bg-white rounded-lg shadow;
+}
+
 /* Link */
 .link {
   @apply text-purple-500 transition-colors duration-100;
   &:hover {
     @apply text-purple-700;
+  }
+}
+
+/* NProgress */
+#nprogress {
+  @apply pointer-events-none;
+  .bar {
+    @apply fixed top-0 inset-x-0 w-screen bg-purple-400;
+    height: 3px;
+    z-index: 9999;
   }
 }
