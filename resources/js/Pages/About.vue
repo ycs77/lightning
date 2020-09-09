@@ -9,7 +9,10 @@
 </template>
 
 <script>
+import AppLayout from '@/Layouts/AppLayout'
+
 export default {
+  layout: AppLayout,
   metaInfo: {
     title: 'About'
   }
