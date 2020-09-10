@@ -11,7 +11,7 @@
 
         <nav>
           <ul class="flex text-sm md:text-base space-x-1 md:space-x-4 items-center">
-            <template v-if="false">
+            <template v-if="true">
               <li>
                 <inertia-link href="/login" class="px-3 py-2 md:px-5 rounded text-gray-400 hover:text-gray-900 transition-colors duration-150">
                   登入

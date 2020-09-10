@@ -27,6 +27,12 @@ DB_USERNAME=[username]
 DB_PASSWORD=[password]
 ```
 
+跑 Migrate：
+
+```bash
+php artisan migrate
+```
+
 然後新增本地 Storage 的公開連結：
 
 ```bash
