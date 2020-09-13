@@ -32,6 +32,9 @@
                     </button>
                   </template>
                   <template #menu="{ close }">
+                    <dropdown-item :href="`/user/${user.id}`" icon="heroicons-outline:home" @click="close">
+                      我的主頁
+                    </dropdown-item>
                     <dropdown-item href="/user/setting" icon="heroicons-outline:cog" @click="close">
                       帳號設定
                     </dropdown-item>

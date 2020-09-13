@@ -18,6 +18,17 @@
         </div>
       </div>
     </form>
+
+    <form @submit.prevent="destroy" class="card card-main mt-6">
+      <h1 class="text-3xl text-center">刪除帳號</h1>
+      <div class="w-12 mt-1 mx-auto border-b-4 border-red-400"></div>
+
+      <div class="grid gap-6 mt-6 md:grid-cols-2">
+        <div class="md:col-span-2">
+          <loading-button :loading="destroyLoading" class="btn btn-red">刪除帳號</loading-button>
+        </div>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -54,7 +65,8 @@ export default {
         password_confirmation: '',
         avatar: null
       },
-      loading: false
+      loading: false,
+      destroyLoading: false
     }
   },
   methods: {
@@ -75,6 +87,12 @@ export default {
           this.form.avatar = null
         }
       })
+    },
+    destroy() {
+      if (confirm('確定要刪除當前帳號? 所有文章將會被刪除，且此操作不可恢復!')) {
+        this.destroyLoading = true
+        this.$inertia.delete('/user').then(() => this.destroyLoading = false)
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <div class="container py-8">
+    <alert v-if="$page.flash.success" class="shadow mb-6">{{ $page.flash.success }}</alert>
     <div class="space-x-3 pb-2 border-b border-purple-200">
       <inertia-link href="/" class="link">Hello world</inertia-link>
       <inertia-link href="/about" class="link">About</inertia-link>
@@ -13,11 +14,15 @@
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
+import Alert from '@/Components/Alert'
 
 export default {
   layout: AppLayout,
   metaInfo: {
     title: 'Hello world'
+  },
+  components: {
+    Alert
   },
   props: {
     name: String
