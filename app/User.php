@@ -4,7 +4,10 @@ namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -37,5 +40,17 @@ class User extends Authenticatable
             'https://www.gravatar.com/avatar/%s?d=%s&s=%s',
             md5(strtolower(trim($this->email))), urlencode($default), $size
         );
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::needsRehash($value) ? Hash::make($value) : $value;
+    }
+
+    public function setAvatarAttribute($avatar)
+    {
+        $this->attributes['avatar'] = $avatar instanceof UploadedFile
+            ? Storage::url($avatar->store('avatars'))
+            : $avatar;
     }
 }

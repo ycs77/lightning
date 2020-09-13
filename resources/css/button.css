@@ -11,3 +11,25 @@
     @apply bg-purple-300 !important;
   }
 }
+.btn-purple-light {
+  @apply bg-purple-100 text-purple-700;
+  &:hover {
+    @apply bg-purple-200;
+  }
+}
+
+.btn-red {
+  @apply bg-red-500 text-white;
+  &:hover {
+    @apply bg-red-700;
+  }
+  &:disabled {
+    @apply bg-red-300 !important;
+  }
+}
+.btn-red-light {
+  @apply bg-red-100 text-red-700;
+  &:hover {
+    @apply bg-red-200;
+  }
+}

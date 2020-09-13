@@ -8,4 +8,9 @@ Route::inertia('/', 'HelloWorld', [
 ]);
 Route::inertia('about', 'About');
 
+// User
+Route::get('user/setting', 'User\UserController@edit');
+Route::put('user', 'User\UserController@update');
+
+// Auth
 Auth::routes(['reset' => false]);

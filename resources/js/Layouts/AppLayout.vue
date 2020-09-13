@@ -32,6 +32,10 @@
                     </button>
                   </template>
                   <template #menu="{ close }">
+                    <dropdown-item href="/user/setting" icon="heroicons-outline:cog" @click="close">
+                      帳號設定
+                    </dropdown-item>
+                    <hr class="border-gray-200 my-2">
                     <dropdown-item href="/logout" method="post" icon="heroicons-outline:logout" @click="close">
                       登出
                     </dropdown-item>
