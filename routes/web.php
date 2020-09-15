@@ -14,5 +14,8 @@ Route::put('user', 'User\UserController@update');
 Route::delete('user', 'User\UserController@destroy');
 Route::get('user/{user}', 'User\ProfileController@index');
 
+// Posts
+Route::resource('posts', 'Post\PostController');
+
 // Auth
 Auth::routes(['reset' => false]);
