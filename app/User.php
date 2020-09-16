@@ -58,4 +58,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class, 'author_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function publishedPosts()
+    {
+        return $this->posts()->published();
+    }
 }

@@ -44,6 +44,16 @@ class Post extends Model
             : $thumbnail;
     }
 
+    public function scopePublished($query)
+    {
+        return $query->where('published', true);
+    }
+
+    public function scopeUnpublished($query)
+    {
+        return $query->where('published', false);
+    }
+
     public function author()
     {
         return $this->belongsTo(User::class);

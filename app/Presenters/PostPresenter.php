@@ -3,6 +3,7 @@
 namespace App\Presenters;
 
 use AdditionApps\FlexiblePresenter\FlexiblePresenter;
+use App\Post;
 
 class PostPresenter extends FlexiblePresenter
 {
@@ -18,5 +19,15 @@ class PostPresenter extends FlexiblePresenter
             'created_ago' => optional($this->created_at)->diffForHumans(),
             'published' => $this->published,
         ];
+    }
+
+    public function presetShow()
+    {
+        return $this->with(fn (Post $post) => [
+            'content' => $post->content,
+            'author' => fn () => UserPresenter::make($post->author)
+                ->preset('withCount')
+                ->get(),
+        ]);
     }
 }

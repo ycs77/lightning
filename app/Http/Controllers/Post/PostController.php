@@ -37,11 +37,6 @@ class PostController extends Controller
         return redirect("/posts/{$post->id}")->with('success', '文章新增成功');
     }
 
-    public function show(Post $post)
-    {
-        //
-    }
-
     public function edit(Post $post)
     {
         //
