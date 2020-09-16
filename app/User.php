@@ -53,4 +53,9 @@ class User extends Authenticatable
             ? Storage::url($avatar->store('avatars'))
             : $avatar;
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'author_id');
+    }
 }
