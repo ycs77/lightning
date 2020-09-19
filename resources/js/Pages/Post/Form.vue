@@ -6,7 +6,7 @@
 
       <div class="grid gap-6 mt-6">
         <text-input v-model="form.title" :error="$page.errors.title" label="標題" ref="titleInput" autocomplete="off" />
-        <textarea-input v-model="form.content" :error="$page.errors.content" label="內容" />
+        <markdown-input v-model="form.content" :error="$page.errors.content" label="內容" class="min-w-0" />
         <file-input v-model="form.thumbnail" :error="$page.errors.thumbnail" accept="image/*" label="分享預覽圖片" browseText="選擇圖片" />
         <img v-if="post.thumbnail" :src="post.thumbnail" class="max-w-xs rounded shadow">
         <div class="font-light mb-4">
@@ -25,7 +25,7 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout'
 import TextInput from '@/Components/TextInput'
-import TextareaInput from '@/Components/TextareaInput'
+import MarkdownInput from '@/Components/MarkdownInput'
 import FileInput from '@/Components/FileInput'
 import LoadingButton from '@/Components/LoadingButton'
 
@@ -38,7 +38,7 @@ export default {
   },
   components: {
     TextInput,
-    TextareaInput,
+    MarkdownInput,
     FileInput,
     LoadingButton
   },

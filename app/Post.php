@@ -32,9 +32,17 @@ class Post extends Model
 
     public function updateDescription()
     {
-        $this->description = Str::limit(preg_replace('/\r|\n/', '', $this->content), 80);
+        $this->description = $this->generateDescription($this->content, 80);
 
         return $this;
+    }
+
+    public function generateDescription(string $markdown, int $limit): string
+    {
+        $text = strip_tags(app('parsedown')->parse($markdown));
+        $text = preg_replace("/\r|\n/", '', $text);
+
+        return Str::limit($text, $limit);
     }
 
     public function setThumbnailAttribute($thumbnail)

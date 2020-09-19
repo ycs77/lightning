@@ -20,3 +20,6 @@ Route::get('posts/{post}', 'Post\ShowPost');
 
 // Auth
 Auth::routes(['reset' => false]);
+
+// Upload files
+Route::post('upload/mavon-editor-image', 'UploadController@mavonEditorImage');

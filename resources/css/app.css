@@ -4,6 +4,7 @@
 @import 'tailwindcss/components';
 @import 'button';
 @import 'form';
+@import 'mavonEditor';
 @import 'components';
 @import 'purge-icons-vue';
 

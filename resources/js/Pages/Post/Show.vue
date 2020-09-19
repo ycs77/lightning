@@ -19,7 +19,7 @@
           </div>
         </div>
 
-        <div class="mt-6 font-light break-words">{{ post.content }}</div>
+        <markdown class="mt-6" :value="post.content" />
       </div>
 
       <div>
@@ -52,6 +52,7 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout'
 import Alert from '@/Components/Alert'
+import Markdown from '@/Components/Markdown'
 
 export default {
   layout: AppLayout,
@@ -74,7 +75,8 @@ export default {
     }
   },
   components: {
-    Alert
+    Alert,
+    Markdown
   },
   props: {
     post: Object

@@ -1,0 +1,72 @@
+.v-note-wrapper {
+  @apply min-w-0 border border-gray-300 !important;
+  .v-note-op {
+    @apply border-gray-300 flex-col !important;
+    @screen md {
+      @apply flex-row !important;
+    }
+  }
+  .v-right-item {
+    @apply flex-1 max-w-none !important;
+    @screen md {
+      max-width: 30% !important;
+    }
+  }
+  .op-btn {
+    @apply rounded-md transition-colors duration-150 !important;
+    &.sure {
+      @apply bg-purple-500 text-white !important;
+      &:hover {
+        @apply bg-purple-700 !important;
+      }
+    }
+  }
+  .auto-textarea-wrapper .auto-textarea-input {
+    @apply font-mono !important;
+  }
+  pre.auto-textarea-block {
+    @apply break-words !important;
+  }
+  .v-show-content {
+    @apply bg-white !important;
+  }
+  &.v-note-short {
+    min-height: 220px !important;
+  }
+  &.disabled {
+    &.v-note-short {
+      min-height: 100px !important;
+    }
+    .v-note-edit {
+      @apply cursor-default !important;
+    }
+  }
+}
+
+.markdown-body {
+  @apply font-sans font-light break-words !important;
+  a {
+    @apply text-purple-500 transition-colors duration-100 !important;
+    &:hover {
+      @apply text-purple-700 !important;
+    }
+  }
+  p {
+    @apply text-base leading-7 !important;
+  }
+  strong {
+    @apply font-bold !important;
+  }
+  ul {
+    @apply list-disc !important;
+  }
+  ol {
+    @apply list-decimal !important;
+  }
+  pre {
+    @apply text-base !important;
+  }
+  .hljs {
+    background-color: #1d1f21 !important;
+  }
+}
