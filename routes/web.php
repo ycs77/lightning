@@ -16,6 +16,7 @@ Route::get('user/{user}', 'User\ProfileController@index');
 
 // Posts
 Route::resource('posts', 'Post\PostController')->except('show');
+Route::get('posts/drafts', 'Post\PostController@drafts');
 Route::get('posts/{post}', 'Post\ShowPost');
 
 // Auth

@@ -37,3 +37,17 @@
     z-index: 9999;
   }
 }
+
+/* Tab */
+.tab {
+  @apply px-2 py-1 text-sm font-light rounded select-none;
+}
+.tab-link {
+  @apply text-purple-500 transition-colors duration-100;
+  &:hover {
+    @apply text-purple-700;
+  }
+}
+.tab-active {
+  @apply bg-purple-100 text-purple-700;
+}
