@@ -8,23 +8,42 @@
         <div class="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
           <h1 class="text-3xl font-semibold">{{ user.name }}</h1>
           <div v-if="user.description" class="mt-2 text-gray-600 font-light">{{ user.description }}</div>
+          <tabs class="mt-4 justify-center md:justify-start" :active="type">
+            <tab name="show" :url="`/user/${user.id}`">
+              <icon icon="heroicons-outline:book-open" />文章 {{ user.postsCount }}
+            </tab>
+          </tabs>
         </div>
       </div>
+    </div>
+
+    <div class="card card-main mt-6">
+      <post-list :posts="user.posts" />
     </div>
   </div>
 </template>
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
+import PostList from '@/Lightning/PostList'
+import Tabs from '@/Components/Tabs'
+import Tab from '@/Components/Tab'
 
 export default {
   layout: AppLayout,
   metaInfo() {
     return {
-      title: `用戶 ${this.user.name}`
+      title: this.pageTitle
     }
   },
+  components: {
+    PostList,
+    Tabs,
+    Tab
+  },
   props: {
+    pageTitle: String,
+    type: String,
     user: Object
   }
 }
