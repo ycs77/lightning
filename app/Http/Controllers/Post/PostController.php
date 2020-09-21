@@ -22,7 +22,7 @@ class PostController extends Controller
             ->posts()
             ->where('published', true)
             ->latest()
-            ->get();
+            ->paginate();
 
         return Inertia::render('Post/List', [
             'type' => 'published',
@@ -39,7 +39,7 @@ class PostController extends Controller
             ->posts()
             ->where('published', false)
             ->latest()
-            ->get();
+            ->paginate();
 
         return Inertia::render('Post/List', [
             'type' => 'drafts',

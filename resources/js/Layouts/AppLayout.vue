@@ -38,6 +38,12 @@
                     <dropdown-item href="/posts/create" icon="heroicons-outline:pencil" @click="close">
                       撰寫文章
                     </dropdown-item>
+                    <dropdown-item href="/posts" icon="heroicons-outline:book-open" @click="close">
+                      我的文章
+                    </dropdown-item>
+                    <dropdown-item href="/posts/drafts" icon="heroicons-outline:document-text" @click="close">
+                      我的草稿
+                    </dropdown-item>
                     <dropdown-item href="/user/setting" icon="heroicons-outline:cog" @click="close">
                       帳號設定
                     </dropdown-item>

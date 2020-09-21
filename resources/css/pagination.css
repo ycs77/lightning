@@ -1,0 +1,18 @@
+.pagination-item {
+  @apply px-3 py-1 text-sm font-light border rounded-md select-none;
+}
+
+.pagination-link {
+  @apply text-gray-500 border-gray-300 transition-colors duration-150;
+  &:hover {
+    @apply border-purple-500 text-purple-500;
+  }
+}
+
+.pagination-active {
+  @apply bg-purple-500 border-purple-500 text-white;
+}
+
+.pagination-disabled {
+  @apply text-gray-300 border-gray-200;
+}

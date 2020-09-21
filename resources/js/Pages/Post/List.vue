@@ -51,7 +51,7 @@ export default {
   props: {
     type: String,
     typeText: String,
-    posts: Array
+    posts: Object
   }
 }
 </script>

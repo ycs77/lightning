@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
+    protected $perPage = 10;
+
     protected $fillable = [
         'title', 'description', 'content', 'thumbnail', 'visits', 'published',
     ];
