@@ -5,7 +5,7 @@
     <div class="grid gap-6 xl:grid-cols-4">
       <div class="card p-6 md:p-8 min-w-0 xl:col-span-3">
         <h1 class="text-3xl font-semibold leading-snug">{{ post.title }}</h1>
-        <div class="flex space-x-4 mt-2 text-sm">
+        <div class="flex flex-wrap space-x-4 mt-2 text-sm">
           <div>
             <icon class="text-purple-500" icon="heroicons-outline:clock" />
             <span class="text-gray-500">{{ post.created_at }}</span>
@@ -17,9 +17,35 @@
           <div v-if="!post.published">
             <span class="px-2 py-1 bg-green-100 text-green-700">草稿</span>
           </div>
+          <inertia-link v-if="post.can.update" :href="`/posts/${post.id}/edit`" class="link">
+            <icon icon="heroicons-outline:pencil" />
+            編輯
+          </inertia-link>
+          <a v-if="post.can.delete" :href="`/posts/${post.id}`" class="link" @click.prevent="destroy(post)">
+            <icon icon="heroicons-outline:trash" />
+            刪除
+          </a>
         </div>
 
         <markdown class="mt-6" :value="post.content" />
+
+        <div class="flex space-x-2 md:space-x-3 mt-6 font-light">
+          <inertia-link v-if="post.can.update"
+            :href="`/posts/${post.id}/edit`"
+            class="btn btn-blue-light text-sm px-3 py-1"
+          >
+            <icon class="mr-1" icon="heroicons-outline:pencil" />
+            編輯
+          </inertia-link>
+          <a v-if="post.can.delete"
+            :href="`/posts/${post.id}`"
+            class="btn btn-red-light text-sm px-3 py-1"
+            @click.prevent="destroy(post)"
+          >
+            <icon class="mr-1" icon="heroicons-outline:trash" />
+            刪除
+          </a>
+        </div>
       </div>
 
       <div>
@@ -92,6 +118,11 @@ export default {
     },
     addMetaWithProperty(property, content) {
       if (content) this.meta.push({ property, content })
+    },
+    destroy(post) {
+      if (confirm('確定要刪除此文章? 刪除後即無法回復!')) {
+        this.$inertia.delete(`/posts/${post.id}`)
+      }
     }
   }
 }

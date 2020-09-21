@@ -7,6 +7,8 @@ use App\Post;
 
 class PostPresenter extends FlexiblePresenter
 {
+    use Concens\HasAuthUser;
+
     public function values(): array
     {
         return [
@@ -37,6 +39,10 @@ class PostPresenter extends FlexiblePresenter
             'author' => fn () => UserPresenter::make($post->author)
                 ->preset('withCount')
                 ->get(),
+            'can' => [
+                'update' => $this->userCan('update', $post),
+                'delete' => $this->userCan('delete', $post),
+            ],
         ]);
     }
 }

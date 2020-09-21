@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Presenters\PostPresenter;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class PostController extends Controller
@@ -68,16 +67,30 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        //
+        $this->authorize('update', $post);
+
+        return Inertia::render('Post/Form', [
+            'post' => PostPresenter::make($post)->with(fn (Post $post) => [
+                'content' => $post->content,
+            ])->get(),
+        ]);
     }
 
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $this->authorize('update', $post);
+
+        $post->update($request->validated());
+
+        return redirect("/posts/{$post->id}")->with('success', '文章更新成功');
     }
 
     public function destroy(Post $post)
     {
-        //
+        $this->authorize('delete', $post);
+
+        $post->delete();
+
+        return redirect('/posts')->with('success', '文章刪除成功');
     }
 }

@@ -22,7 +22,22 @@
       </div>
 
       <div class="mt-6">
-        <post-list :posts="posts" hide-author :empty="`目前沒有${typeText}`" />
+        <post-list :posts="posts" hide-author :empty="`目前沒有${typeText}`">
+          <template #info-after="{ post }">
+            <div>
+              <inertia-link :href="`/posts/${post.id}/edit`" class="link">
+                <icon icon="heroicons-outline:pencil" />
+                編輯
+              </inertia-link>
+            </div>
+            <div>
+              <a :href="`/posts/${post.id}`" class="link" @click.prevent="destroy(post)">
+                <icon icon="heroicons-outline:trash" />
+                刪除
+              </a>
+            </div>
+          </template>
+        </post-list>
       </div>
     </div>
   </div>
@@ -52,6 +67,13 @@ export default {
     type: String,
     typeText: String,
     posts: Object
+  },
+  methods: {
+    destroy(post) {
+      if (confirm('確定要刪除此文章? 刪除後即無法回復!')) {
+        this.$inertia.delete(`/posts/${post.id}`)
+      }
+    }
   }
 }
 </script>

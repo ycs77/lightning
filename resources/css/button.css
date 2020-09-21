@@ -33,3 +33,19 @@
     @apply bg-red-200;
   }
 }
+
+.btn-blue {
+  @apply bg-blue-500 text-white;
+  &:hover {
+    @apply bg-blue-700;
+  }
+  &:disabled {
+    @apply bg-blue-300 !important;
+  }
+}
+.btn-blue-light {
+  @apply bg-blue-100 text-blue-700;
+  &:hover {
+    @apply bg-blue-200;
+  }
+}

@@ -29,12 +29,12 @@ class PostPolicy
 
     public function update(User $user, Post $post)
     {
-        //
+        return $user->id === $post->author_id;
     }
 
     public function delete(User $user, Post $post)
     {
-        //
+        return $user->id === $post->author_id;
     }
 
     public function restore(User $user, Post $post)
