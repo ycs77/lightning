@@ -29,23 +29,34 @@
 
         <markdown class="mt-6" :value="post.content" />
 
-        <div class="flex space-x-2 md:space-x-3 mt-6 font-light">
+        <div class="flex flex-wrap space-x-2 md:space-x-3 mt-6 font-light">
+          <inertia-link
+            :href="`/posts/${post.id}/like`"
+            method="post"
+            class="btn btn-purple-light text-sm px-3 py-1 mb-2"
+          >
+            <icon class="mr-1 text-purple-500" :icon="!post.is_liked
+              ? 'heroicons-outline:heart'
+              : 'heroicons-solid:heart'"
+            />喜歡 | {{ post.likes }}
+          </inertia-link>
           <inertia-link v-if="post.can.update"
             :href="`/posts/${post.id}/edit`"
-            class="btn btn-blue-light text-sm px-3 py-1"
+            class="btn btn-blue-light text-sm px-3 py-1 mb-2"
           >
             <icon class="mr-1" icon="heroicons-outline:pencil" />
             編輯
           </inertia-link>
           <a v-if="post.can.delete"
             :href="`/posts/${post.id}`"
-            class="btn btn-red-light text-sm px-3 py-1"
+            class="btn btn-red-light text-sm px-3 py-1 mb-2"
             @click.prevent="destroy(post)"
           >
             <icon class="mr-1" icon="heroicons-outline:trash" />
             刪除
           </a>
         </div>
+        <div v-if="$page.errors.like" class="form-error">{{ $page.errors.like }}</div>
       </div>
 
       <div>
@@ -66,6 +77,10 @@
               <inertia-link :href="`/user/${post.author.id}`" class="link font-light">
                 <icon icon="heroicons-outline:book-open" />
                 文章 {{ post.author.postsCount }}
+              </inertia-link>
+              <inertia-link :href="`/user/${post.author.id}/likes`" class="link font-light">
+                <icon icon="heroicons-outline:heart" />
+                喜歡 {{ post.author.likesCount }}
               </inertia-link>
             </div>
           </div>

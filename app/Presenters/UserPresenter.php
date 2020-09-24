@@ -22,6 +22,7 @@ class UserPresenter extends FlexiblePresenter
     {
         return $this->with(fn (User $user) => [
             'postsCount' => $user->publishedPosts()->count(),
+            'likesCount' => $user->likedPosts()->count(),
         ]);
     }
 }

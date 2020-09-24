@@ -12,6 +12,9 @@
             <tab name="show" :url="`/user/${user.id}`">
               <icon icon="heroicons-outline:book-open" />文章 {{ user.postsCount }}
             </tab>
+            <tab name="likes" :url="`/user/${user.id}/likes`">
+              <icon icon="heroicons-outline:heart" />喜歡 {{ user.likesCount }}
+            </tab>
           </tabs>
         </div>
       </div>

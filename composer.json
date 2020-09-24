@@ -17,6 +17,7 @@
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.3",
+        "multicaret/laravel-acquaintances": "^3.3",
         "parsedown/laravel": "^1.2"
     },
     "require-dev": {

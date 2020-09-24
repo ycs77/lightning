@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Presenters\PostPresenter;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
 class PostController extends Controller
@@ -92,5 +93,22 @@ class PostController extends Controller
         $post->delete();
 
         return redirect('/posts')->with('success', '文章刪除成功');
+    }
+
+    public function like(Post $post)
+    {
+        if (! $post->published) {
+            throw ValidationException::withMessages([
+                'like' => '未發布文章不可以點喜歡',
+            ]);
+        }
+
+        if ($post->isLikedBy($this->user())) {
+            $this->user()->unlike($post);
+        } else {
+            $this->user()->like($post);
+        }
+
+        return back();
     }
 }

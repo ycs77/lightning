@@ -8,10 +8,11 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Multicaret\Acquaintances\Traits\CanLike;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, CanLike;
 
     protected $fillable = [
         'name', 'email', 'password', 'description', 'avatar',
@@ -65,5 +66,13 @@ class User extends Authenticatable
     public function publishedPosts()
     {
         return $this->posts()->published();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function likedPosts()
+    {
+        return $this->likes(Post::class)->published();
     }
 }
