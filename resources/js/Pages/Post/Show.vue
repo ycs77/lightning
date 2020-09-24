@@ -88,12 +88,20 @@
           </div>
         </div>
       </div>
+
+      <div class="min-w-0 xl:col-span-3">
+        <div class="card p-6 md:p-8">
+          <h3 class="text-2xl font-semibold">留言</h3>
+          <comment-form :post="post" :enabled="Boolean($page.auth.user)" class="mt-6" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
+import CommentForm from '@/Lightning/CommentForm'
 import Alert from '@/Components/Alert'
 import Markdown from '@/Components/Markdown'
 
@@ -119,6 +127,7 @@ export default {
   },
   components: {
     Alert,
+    CommentForm,
     Markdown
   },
   props: {
