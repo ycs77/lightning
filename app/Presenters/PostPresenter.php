@@ -3,6 +3,7 @@
 namespace App\Presenters;
 
 use AdditionApps\FlexiblePresenter\FlexiblePresenter;
+use App\Acquaintances\Interaction;
 use App\Post;
 
 class PostPresenter extends FlexiblePresenter
@@ -16,7 +17,7 @@ class PostPresenter extends FlexiblePresenter
             'title' => $this->title,
             'description' => $this->description,
             'thumbnail' => $this->thumbnail,
-            'visits' => $this->visits,
+            'visits' => Interaction::numberToReadable($this->visits),
             'likes' => $this->likersCountReadable(),
             'created_at' => optional($this->created_at)->format('Y-m-d H:i:s'),
             'created_ago' => optional($this->created_at)->diffForHumans(),
@@ -44,7 +45,7 @@ class PostPresenter extends FlexiblePresenter
                 'update' => $this->userCan('update', $post),
                 'delete' => $this->userCan('delete', $post),
             ],
-            'is_liked' => $this->user() ? $post->isLikedBy($this->user()) : false,
+            'is_liked' => $post->isLiked,
         ]);
     }
 }

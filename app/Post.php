@@ -2,11 +2,13 @@
 
 namespace App;
 
+use App\Acquaintances\CanBeLiked;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Multicaret\Acquaintances\Traits\CanBeLiked;
 
 class Post extends Model
 {
@@ -24,6 +26,8 @@ class Post extends Model
         'author_id' => 'integer',
     ];
 
+    protected ?bool $isLikedCache = null;
+
     protected static function booted()
     {
         static::creating(function (self $post) {
@@ -33,6 +37,8 @@ class Post extends Model
         static::updating(function (self $post) {
             $post->updateDescription();
         });
+
+        static::addGlobalScope('likers', fn (Builder $builder) => $builder->withCount('likers'));
     }
 
     public function updateDescription()
@@ -48,6 +54,15 @@ class Post extends Model
         $text = preg_replace("/\r|\n/", '', $text);
 
         return Str::limit($text, $limit);
+    }
+
+    public function getIsLikedAttribute()
+    {
+        if (is_null($this->isLikedCache)) {
+            $this->isLikedCache = Auth::user() ? $this->isLikedBy(Auth::user()) : false;
+        }
+
+        return $this->isLikedCache;
     }
 
     public function setThumbnailAttribute($thumbnail)

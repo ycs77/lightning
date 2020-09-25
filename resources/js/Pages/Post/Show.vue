@@ -33,12 +33,14 @@
           <inertia-link
             :href="`/posts/${post.id}/like`"
             method="post"
+            preserve-scroll
+            :only="['postOnlyLikes', 'errors']"
             class="btn btn-purple-light text-sm px-3 py-1 mb-2"
           >
-            <icon class="mr-1 text-purple-500" :icon="!post.is_liked
+            <icon class="mr-1 text-purple-500" :icon="!postOnlyLikes.is_liked
               ? 'heroicons-outline:heart'
               : 'heroicons-solid:heart'"
-            />喜歡 | {{ post.likes }}
+            />喜歡 | {{ postOnlyLikes.likes }}
           </inertia-link>
           <inertia-link v-if="post.can.update"
             :href="`/posts/${post.id}/edit`"
@@ -120,7 +122,8 @@ export default {
     Markdown
   },
   props: {
-    post: Object
+    post: Object,
+    postOnlyLikes: Object
   },
   data() {
     return {
