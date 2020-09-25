@@ -5,7 +5,9 @@ namespace App\Providers;
 use App\Pagination\Paginator;
 use App\Presenters\UserPresenter;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 
@@ -19,7 +21,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        //
+        if (App::isProduction()) {
+            URL::forceScheme('https');
+        }
     }
 
     protected function registerInertia()
