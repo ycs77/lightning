@@ -93,6 +93,7 @@
         <div class="card p-6 md:p-8">
           <h3 class="text-2xl font-semibold">留言</h3>
           <comment-form :post="post" :enabled="Boolean($page.auth.user)" class="mt-6" />
+          <comment-list :comments="comments" class="mt-6 -mb-6" />
         </div>
       </div>
     </div>
@@ -102,6 +103,7 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout'
 import CommentForm from '@/Lightning/CommentForm'
+import CommentList from '@/Lightning/CommentList'
 import Alert from '@/Components/Alert'
 import Markdown from '@/Components/Markdown'
 
@@ -128,11 +130,13 @@ export default {
   components: {
     Alert,
     CommentForm,
+    CommentList,
     Markdown
   },
   props: {
     post: Object,
-    postOnlyLikes: Object
+    postOnlyLikes: Object,
+    comments: Array
   },
   data() {
     return {

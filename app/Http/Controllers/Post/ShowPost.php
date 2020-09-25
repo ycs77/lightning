@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Presenters\CommentPresenter;
 use App\Presenters\PostPresenter;
 use Inertia\Inertia;
 
@@ -27,6 +28,13 @@ class ShowPost extends Controller
                     'is_liked' => $post->isLiked,
                 ])
                 ->get(),
+            'comments' => fn () => CommentPresenter::collection(
+                $post->comments()
+                    ->with('commenter')
+                    ->latest()
+                    ->get()
+                    ->each->setRelation('post', $post)
+            )->get(),
         ]);
     }
 

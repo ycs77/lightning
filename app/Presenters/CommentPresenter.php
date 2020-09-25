@@ -16,6 +16,9 @@ class CommentPresenter extends FlexiblePresenter
             'content' => $this->content,
             'commenter' => UserPresenter::make($this->commenter)->get(),
             'created_at' => $this->created_at->diffForHumans(),
+            'can' => [
+                'delete' => $this->userCan('delete', $this->resource),
+            ],
         ];
     }
 }

@@ -46,7 +46,8 @@ export default {
     submit() {
       this.loading = true
       this.$inertia.post(`/posts/${this.post.id}/comments`, this.form, {
-        preserveScroll: true
+        preserveScroll: true,
+        only: ['comments', 'errors']
       }).then(() => {
         this.loading = false
         if (! Object.keys(this.$page.errors).length) {

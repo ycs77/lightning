@@ -7,6 +7,9 @@ import MarkdownIt from 'markdown-it'
 import insert from 'markdown-it-ins'
 import taskLists from 'markdown-it-task-lists'
 import hljs from 'highlight.js'
+import hljsDefineVue from 'highlightjs-vue'
+
+hljsDefineVue(hljs)
 
 export default {
   props: {
