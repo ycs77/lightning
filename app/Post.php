@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Post extends Model
@@ -68,7 +67,7 @@ class Post extends Model
     public function setThumbnailAttribute($thumbnail)
     {
         $this->attributes['thumbnail'] = $thumbnail instanceof UploadedFile
-            ? Storage::url($thumbnail->store('posts'))
+            ? $thumbnail->storeFile('posts')
             : $thumbnail;
     }
 

@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Multicaret\Acquaintances\Traits\CanLike;
 
 class User extends Authenticatable
@@ -51,7 +50,7 @@ class User extends Authenticatable
     public function setAvatarAttribute($avatar)
     {
         $this->attributes['avatar'] = $avatar instanceof UploadedFile
-            ? Storage::url($avatar->store('avatars'))
+            ? $avatar->storeFile('avatars')
             : $avatar;
     }
 
