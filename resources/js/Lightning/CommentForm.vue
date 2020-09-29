@@ -44,14 +44,15 @@ export default {
   },
   methods: {
     submit() {
-      this.loading = true
       this.$inertia.post(`/posts/${this.post.id}/comments`, this.form, {
         preserveScroll: true,
-        only: ['comments', 'errors']
-      }).then(() => {
-        this.loading = false
-        if (! Object.keys(this.$page.errors).length) {
-          this.form.content = ''
+        only: ['comments', 'errors'],
+        onStart: () => this.loading = true,
+        onFinish: () => this.loading = false,
+        onSuccess: () => {
+          if (! Object.keys(this.$page.errors).length) {
+            this.form.content = ''
+          }
         }
       })
     }

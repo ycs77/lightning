@@ -44,8 +44,10 @@ export default {
   },
   methods: {
     submit() {
-      this.loading = true
-      this.$inertia.post('/register', this.form).then(() => this.loading = false)
+      this.$inertia.post('/register', this.form, {
+        onStart: () => this.loading = true,
+        onFinish: () => this.loading = false
+      })
     }
   },
   mounted() {

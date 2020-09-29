@@ -71,27 +71,30 @@ export default {
   },
   methods: {
     submit() {
-      this.loading = true
-
       const data = new FormData()
       for (const key in this.form) {
         data.append(key, this.form[key] || '')
       }
       data.append('_method', 'put')
 
-      this.$inertia.post('/user', data).then(() => {
-        this.loading = false
-        if (! Object.keys(this.$page.errors).length) {
-          this.form.password = ''
-          this.form.password_confirmation = ''
-          this.form.avatar = null
+      this.$inertia.post('/user', data, {
+        onStart: () => this.loading = true,
+        onFinish: () => this.loading = false,
+        onSuccess: () => {
+          if (! Object.keys(this.$page.errors).length) {
+            this.form.password = ''
+            this.form.password_confirmation = ''
+            this.form.avatar = null
+          }
         }
       })
     },
     destroy() {
       if (confirm('確定要刪除當前帳號? 所有文章將會被刪除，且此操作不可恢復!')) {
-        this.destroyLoading = true
-        this.$inertia.delete('/user').then(() => this.destroyLoading = false)
+        this.$inertia.delete('/user', {
+          onStart: () => this.destroyLoading = true,
+          onFinish: () => this.destroyLoading = false
+        })
       }
     }
   }

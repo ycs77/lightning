@@ -11,8 +11,9 @@
         "heroku-postbuild": "npm run prod"
     },
     "dependencies": {
-        "@inertiajs/inertia": "^0.2",
-        "@inertiajs/inertia-vue": "^0.2",
+        "@inertiajs/inertia": "^0.3",
+        "@inertiajs/inertia-vue": "^0.2.4",
+        "@inertiajs/progress": "^0.1.2",
         "@tailwindcss/custom-forms": "^0.2.1",
         "@tailwindcss/ui": "^0.6.0",
         "autoprefixer": "^9.8.6",

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueMeta from 'vue-meta'
 import { InertiaApp } from '@inertiajs/inertia-vue'
+import { InertiaProgress } from '@inertiajs/progress'
 import PurgeIconsVue from 'purge-icons-vue'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
@@ -11,6 +12,10 @@ Vue.use(InertiaApp)
 Vue.use(VueMeta)
 Vue.use(PurgeIconsVue)
 Vue.use(mavonEditor)
+
+InertiaProgress.init({
+  color: '#ac94fa'
+})
 
 const app = document.getElementById('app')
 const appName = document.title

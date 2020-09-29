@@ -81,18 +81,19 @@ export default {
   },
   methods: {
     submit() {
-      this.loading = true
-
       const data = new FormData()
       for (const key in this.form) {
         data.append(key, this.form[key] || '')
       }
       if (this.isEdit) data.append('_method', 'put')
 
-      return this.$inertia.post(this.isEdit ? `/posts/${this.post.id}` : '/posts', data).then(() => {
-        this.loading = false
-        if (! Object.keys(this.$page.errors).length) {
-          this.form.thumbnail = null
+      this.$inertia.post(this.isEdit ? `/posts/${this.post.id}` : '/posts', data, {
+        onStart: () => this.loading = true,
+        onFinish: () => this.loading = false,
+        onSuccess: () => {
+          if (! Object.keys(this.$page.errors).length) {
+            this.form.thumbnail = null
+          }
         }
       })
     }
