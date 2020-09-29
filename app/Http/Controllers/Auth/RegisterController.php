@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Demo\Demo;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class RegisterController extends Controller
 {
-    use RegistersUsers;
+    use RegistersUsers {
+        register as userRegister;
+    }
 
     protected $redirectTo = RouteServiceProvider::HOME;
 
@@ -24,6 +28,13 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         return Inertia::render('Auth/Register');
+    }
+
+    public function register(Request $request)
+    {
+        Demo::block(true, fn ($message) => ['name' => $message]);
+
+        return $this->userRegister($request);
     }
 
     protected function validator(array $data)

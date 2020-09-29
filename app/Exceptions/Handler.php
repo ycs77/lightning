@@ -64,7 +64,7 @@ class Handler extends ExceptionHandler
             503 => $exception->getMessage() ?: 'Service Unavailable',
         ];
 
-        if (App::environment('production')
+        if ((App::isProduction() || App::environment('demo'))
             && in_array($status, array_keys($errorCodes))) {
             return Inertia::render('Error', [
                 'code' => $status,

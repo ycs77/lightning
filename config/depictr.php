@@ -62,8 +62,8 @@ return [
     | Excluded
     |--------------------------------------------------------------------------
     |
-    | URLs that should NOT be processed by Depictr. This is useful for plain 
-    | text files like sitemap.txt where Panther will wrap it in a stripped 
+    | URLs that should NOT be processed by Depictr. This is useful for plain
+    | text files like sitemap.txt where Panther will wrap it in a stripped
     | down HTML file. Uses $request->is(), so using `*` for wildcard
     | is permitted. The admin route and its sub-routes have
     | been added to showacase the functionality.
@@ -84,5 +84,6 @@ return [
     'environments' => [
         'production',
         'testing',
+        'demo',
     ],
 ];

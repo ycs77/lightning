@@ -1,5 +1,6 @@
 <template>
   <div class="bg-gray-100 min-h-screen">
+    <demo-alert />
     <header class="bg-white shadow">
       <div class="container flex items-center justify-between h-16 md:h-20">
         <h1>
@@ -69,11 +70,13 @@
 <script>
 import Dropdown from '@/Components/Dropdown'
 import DropdownItem from '@/Components/DropdownItem'
+import DemoAlert from '@/Lightning/DemoAlert'
 
 export default {
   components: {
     Dropdown,
-    DropdownItem
+    DropdownItem,
+    DemoAlert
   },
   computed: {
     user() {

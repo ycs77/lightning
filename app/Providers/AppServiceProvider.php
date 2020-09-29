@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        if (App::isProduction()) {
+        if (App::isProduction() || App::environment('demo')) {
             URL::forceScheme('https');
         }
 
@@ -43,6 +43,7 @@ class AppServiceProvider extends ServiceProvider
                 'success' => session('success'),
                 'error' => session('error'),
             ],
+            'is_demo' => App::environment('demo'),
         ]);
     }
 
